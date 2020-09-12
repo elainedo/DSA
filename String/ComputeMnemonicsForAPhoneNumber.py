@@ -18,5 +18,4 @@ def computeMnemonics(num):
 
     return result
 
-
 print(computeMnemonics('34'))
