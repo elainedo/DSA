@@ -1,13 +1,16 @@
 def buy_stock_twice(nums):
-    max_profit_arr = []
-    max_profit = 0
-    lowest = float('inf')
-    for price in nums:
-        max_profit = max(max_profit, price-lowest)
-        max_profit_arr.append(max_profit)
-        lowest = min(lowest, price)
 
-    def buy_stock_twice_helper(nums):
+    def max_profit_left(nums):
+        max_profit_arr = []
+        max_profit = 0
+        lowest = float('inf')
+        for price in nums:
+            max_profit = max(max_profit, price-lowest)
+            max_profit_arr.append(max_profit)
+            lowest = min(lowest, price)
+        return max_profit_arr
+
+    def max_profit_right(nums):
         max_profit_arr = []
         max_profit = 0
         highest = 0
@@ -16,12 +19,13 @@ def buy_stock_twice(nums):
             max_profit_arr.insert(0, max_profit)
             highest = max(highest, price)
         return max_profit_arr
-    
-    reverse_profit = buy_stock_twice_helper(nums)
+
+    left = max_profit_left(nums)
+    right = max_profit_right(nums)
 
     result = 0
     for i in range(0, len(nums)):
-        result = max(result, max_profit_arr[i] + reverse_profit[i])
+        result = max(result, left[i] + right[i])
     
     return result
 
