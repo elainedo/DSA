@@ -1,4 +1,7 @@
-from TreeNode import *
+import sys
+import os
+sys.path.append("..")
+from TreeNode import TreeNode
 
 def is_balanced(tree):
     def get_height_if_balanced(tree):
